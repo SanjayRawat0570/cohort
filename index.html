@@ -1,22 +1,36 @@
-html<!DOCTYPE html>
+html
+<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
-<body
-<div id="container">
-    
-</div>
-    
-    <button onclick="getAnimals()"></button>get animals</button>
-    fetch("https://api.thecatapi.com/v1/images/search")
-    .then(async function(response){
-        const jsonData = await response.json();
-        document.getElementById("container").innerHTML = `<img src="${jsonData[0].url}" alt="cat"/>`;
-    })
-</script>
+
+<body>
+    <script>
+        async function getUserData() {
+            // try {
+                const response = await fetch("https://fakerapi.it/conversation", {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                    },
+                });
+
+            //     if (!response.ok) {
+            //         throw new Error(`HTTP error! Status: ${response.status}`);
+            //     }
+
+                const data = await response.json();
+                console.log(data);
+            // } catch (error) {
+            //     console.error("Error fetching user data:", error);
+            // }
+        }
+
+    </script>
 </body>
+<button onclick="getUserData()">Get User Data</button>
 
 </html>
