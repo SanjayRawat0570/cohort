@@ -1,0 +1,22 @@
+html<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body
+<div id="container">
+    
+</div>
+    
+    <button onclick="getAnimals()"></button>get animals</button>
+    fetch("https://api.thecatapi.com/v1/images/search")
+    .then(async function(response){
+        const jsonData = await response.json();
+        document.getElementById("container").innerHTML = `<img src="${jsonData[0].url}" alt="cat"/>`;
+    })
+</script>
+</body>
+
+</html>
