@@ -15,10 +15,16 @@ const ALL_USERS = [{
     name : "Rahul Rawat",
 },
 ];
-function userExists(username){
-    return ALL_USERS.some(function(user){
-        return user.username === username;
-    });
+function userExists(username,password){
+    let userExists = false;
+    for(let i=0; i<ALL_USERS.length; i++){  
+        if(ALL_USERS[i].username === username && ALL_USERS[i].password === password){
+            userExists = true;
+            break;
+        }
+    }
+    return userExists;
+    
 }
 app.post("/sigin", function(req, res){
     const username = req.body.username;
