@@ -4,15 +4,22 @@
     const a = document.getElementById("firstnumber").value;
     const b = document.getElementById("secondnumber").value;
     const element =  document.getElementById("result")
-  fetch ('http://localhost:3000/sum?a='+a+'&b='+b)
-    //element.innerHTML = parseInt(a) + parseInt(b);
+  fetch ('http://localhost:3000/Sum?a='+a+'&b='+b)
+    .then(response => response.json())
+    .then(data => {
+      element.innerHTML = data.sum;
+    })
   }
   function calculateSimpleInterest() {
     const principal = document.getElementById("principal").value;
     const rate = document.getElementById("rate").value;
     const time = document.getElementById("time").value;
     const element = document.getElementById("total");
-    element.innerHTML = ((parseInt(principal) * parseInt(rate) * parseInt(time)) / 100);
+    fetch('http://localhost:3000/interest?principal='+principal+'&rate='+rate+'&time='+time)
+    .then(response => response.json())
+    .then(data => {
+      element.innerHTML = data.interest;
+    })
   }
     </script>
     <body>
