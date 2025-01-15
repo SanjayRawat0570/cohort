@@ -1,5 +1,15 @@
 <html>
     <script>
+        let timeout ;
+        function debouncecalculation() {
+            let  timer;
+            return function() {
+                clearTimeout(timeout);
+                timeout  = setTimeout(() => {
+                    calculate();
+                }, 6000);
+            }
+        }
    function calculate() {
     const a = document.getElementById("firstnumber").value;
     const b = document.getElementById("secondnumber").value;

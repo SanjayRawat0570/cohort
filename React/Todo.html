@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <script>
+        const todos = [];
+        function addTodo() {
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            if (title.trim() === "" || description.trim() === "") {
+                alert("Please enter both title and description.");
+                return;
+            }
+            const todo = { title, description };
+            todos.push(todo);
+            document.getElementById("title").value = "";
+            document.getElementById("description").value = "";
+            alert("Todo added successfully");
+            renderTodos();
+        }
+
+        function renderTodos() {
+            const todosContainer = document.getElementById("todos");
+            todosContainer.innerHTML = "";
+            todos.forEach((todo, index) => {
+                const todoElement = document.createElement("div");
+                const titleElement = document.createElement("h3");
+                titleElement.innerText = `Title: ${todo.title}`;
+                const descriptionElement = document.createElement("p");
+                descriptionElement.innerText = `Description: ${todo.description}`;
+                const deleteButton = document.createElement("button");
+                deleteButton.innerText = "Delete";
+                deleteButton.style.marginTop = "5px";
+                deleteButton.onclick = () => {
+                    deleteTodo(index);
+                };
+
+                todoElement.appendChild(titleElement);
+                todoElement.appendChild(descriptionElement);
+                todoElement.appendChild(deleteButton);
+                todosContainer.appendChild(todoElement);
+            });
+        }
+
+        function deleteTodo(index) {
+            todos.splice(index, 1);
+            renderTodos();
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Todo List</h1>
+        <input id="title" type="text" placeholder="Enter your title" /><br><br>
+        <input id="description" type="text" placeholder="Enter description" /><br><br>
+        <button onclick="addTodo()">Add Todo</button>
+        <div id="todos"></div>
+    </div>
+</body>
+
+</html>
